@@ -33,19 +33,19 @@ export default function DashboardAppPage() {
 
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="Voltage" total={`10%`} icon={'ion:water-outline'} />
+            <AppWidgetSummary title="Voltage" total={`${100} V`} icon={'ion:water-outline'} />
           </Grid>
 
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="Current" total={`100 Liters`} color="info" icon={'healthicons:running-water-outline-24px'} />
+            <AppWidgetSummary title="Current" total={`${100} A`} color="info" icon={'healthicons:running-water-outline-24px'} />
           </Grid>
 
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="Energy Consumption" total={`100 Units`} color="warning" icon={'ant-design:thunderbolt-outlined'} />
+            <AppWidgetSummary title="Energy Consumption" total={`${100} units`} color="warning" icon={'ant-design:thunderbolt-outlined'} />
           </Grid>
 
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="Power" total={`55 Units`} color="error" icon={'mdi:gas'} />
+            <AppWidgetSummary title="Power" total={`${50} P`} color="error" icon={'mdi:gas'} />
           </Grid>
 
           <Grid item xs={12} md={6} lg={8}>

@@ -8,9 +8,9 @@ const icon = (name) => <Iconify icon={name} width={30} height={30} />;
 
 const navConfig = [
   {
-    title: 'Asaani',
+    title: 'Asani',
     path: '/dashboard/app',
-    icon: icon('ic_analytics'),
+    icon: <img src="../assets/l.svg" alt="Asaani Icon" width={30} height={30} />,
   },
   {
     title: 'Paani',
