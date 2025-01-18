@@ -2,6 +2,8 @@ import PropTypes from 'prop-types';
 // @mui
 import { styled } from '@mui/material/styles';
 import { Box, Stack, AppBar, Toolbar, IconButton } from '@mui/material';
+import { Sun, Moon } from 'lucide-react';
+import { useDarkMode } from '../../../theme/darkMode';
 // utils
 import { bgBlur } from '../../../utils/cssStyles';
 // components
@@ -43,6 +45,7 @@ Header.propTypes = {
 };
 
 export default function Header({ onOpenNav }) {
+  const { mode, toggleColorMode } = useDarkMode();
   return (
     <StyledRoot>
       <StyledToolbar>
@@ -68,6 +71,19 @@ export default function Header({ onOpenNav }) {
             sm: 1,
           }}
         >
+          <IconButton 
+            onClick={toggleColorMode}
+            sx={{ 
+              mr: 2,
+              bgcolor: mode === 'dark' ? 'grey.800' : 'grey.100',
+              color: mode === 'dark' ? 'grey.100' : 'grey.800',
+              '&:hover': {
+                bgcolor: mode === 'dark' ? 'grey.700' : 'grey.200',
+              },
+            }}
+          >
+            {mode === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+          </IconButton>
           <LanguagePopover />
           <NotificationsPopover />
           <AccountPopover />

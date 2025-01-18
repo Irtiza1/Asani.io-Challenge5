@@ -3,11 +3,11 @@ import { Navigate, useRoutes } from 'react-router-dom';
 import DashboardLayout from './layouts/dashboard';
 import SimpleLayout from './layouts/simple';
 //
-import BlogPage from './pages/Gas';
-import UserPage from './pages/Paani';
+import GasPage from './pages/Gas';
+import PaaniPage from './pages/Paani';
 import LoginPage from './pages/LoginPage';
 import Page404 from './pages/Page404';
-import ProductsPage from './pages/Bijli';
+import BijliPage from './pages/Bijli';
 import DashboardAppPage from './pages/DashboardAppPage';
 
 // ----------------------------------------------------------------------
@@ -20,9 +20,9 @@ export default function Router() {
       children: [
         { element: <Navigate to="/dashboard/app" />, index: true },
         { path: 'app', element: <DashboardAppPage /> },
-        { path: 'user', element: <UserPage /> },
-        { path: 'products', element: <ProductsPage /> },
-        { path: 'blog', element: <BlogPage /> },
+        { path: 'paani', element: <PaaniPage /> },
+        { path: 'bijli', element: <BijliPage /> },
+        { path: 'gas', element: <GasPage /> },
       ],
     },
     {

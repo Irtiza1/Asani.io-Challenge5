@@ -1,5 +1,6 @@
 import { BrowserRouter } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
+import { DarkModeProvider } from './theme/darkMode';
 // routes
 import Router from './routes';
 // theme
@@ -14,11 +15,13 @@ export default function App() {
   return (
     <HelmetProvider>
       <BrowserRouter>
+      <DarkModeProvider>
         <ThemeProvider>
           <ScrollToTop />
           <StyledChart />
           <Router />
         </ThemeProvider>
+        </DarkModeProvider>
       </BrowserRouter>
     </HelmetProvider>
   );

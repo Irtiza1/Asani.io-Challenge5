@@ -8,23 +8,23 @@ const icon = (name) => <Iconify icon={name} width={30} height={30} />;
 
 const navConfig = [
   {
-    title: 'Asani',
+    title: 'Home',
     path: '/dashboard/app',
-    icon: "logo"
+    icon: icon("material-symbols:home-rounded"),
   },
   {
     title: 'Paani',
-    path: '/dashboard/user',
+    path: '/dashboard/paani',
     icon: icon('mdi:water'),
   },
   {
     title: 'Bijli',
-    path: '/dashboard/products',
+    path: '/dashboard/bijli',
     icon: icon('ant-design:thunderbolt-outlined'),
   },
   {
     title: 'Gas',
-    path: '/dashboard/blog',
+    path: '/dashboard/gas',
     icon: icon('mdi:gas'),
   },
   {
