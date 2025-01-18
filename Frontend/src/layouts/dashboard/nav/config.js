@@ -10,7 +10,7 @@ const navConfig = [
   {
     title: 'Asani',
     path: '/dashboard/app',
-    icon: <img src="../assets/l.svg" alt="Asaani Icon" width={30} height={30} />,
+    icon: "logo"
   },
   {
     title: 'Paani',
