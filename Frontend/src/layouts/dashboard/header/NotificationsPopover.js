@@ -25,61 +25,13 @@ import { fToNow } from '../../../utils/formatTime';
 // components
 import Iconify from '../../../components/iconify';
 import Scrollbar from '../../../components/scrollbar';
-
+import {useNotification} from '../../../utils/Notifcation'
 // ----------------------------------------------------------------------
 
-const NOTIFICATIONS = [
-  {
-    id: faker.datatype.uuid(),
-    title: 'Your order is placed',
-    description: 'waiting for shipping',
-    avatar: null,
-    type: 'order_placed',
-    createdAt: set(new Date(), { hours: 10, minutes: 30 }),
-    isUnRead: true,
-  },
-  {
-    id: faker.datatype.uuid(),
-    title: faker.name.fullName(),
-    description: 'answered to your comment on the Minimal',
-    avatar: '/assets/images/avatars/avatar_2.jpg',
-    type: 'friend_interactive',
-    createdAt: sub(new Date(), { hours: 3, minutes: 30 }),
-    isUnRead: true,
-  },
-  {
-    id: faker.datatype.uuid(),
-    title: 'You have new message',
-    description: '5 unread messages',
-    avatar: null,
-    type: 'chat_message',
-    createdAt: sub(new Date(), { days: 1, hours: 3, minutes: 30 }),
-    isUnRead: false,
-  },
-  {
-    id: faker.datatype.uuid(),
-    title: 'You have new mail',
-    description: 'sent from Guido Padberg',
-    avatar: null,
-    type: 'mail',
-    createdAt: sub(new Date(), { days: 2, hours: 3, minutes: 30 }),
-    isUnRead: false,
-  },
-  {
-    id: faker.datatype.uuid(),
-    title: 'Delivery processing',
-    description: 'Your order is being shipped',
-    avatar: null,
-    type: 'order_shipped',
-    createdAt: sub(new Date(), { days: 3, hours: 3, minutes: 30 }),
-    isUnRead: false,
-  },
-];
-
 export default function NotificationsPopover() {
-  const [notifications, setNotifications] = useState(NOTIFICATIONS);
+  const { notification, setNotification, updateNotification } = useNotification();
 
-  const totalUnRead = notifications.filter((item) => item.isUnRead === true).length;
+  const totalUnRead = notification.filter((item) => item.isUnRead === true).length;
 
   const [open, setOpen] = useState(null);
 
@@ -92,9 +44,9 @@ export default function NotificationsPopover() {
   };
 
   const handleMarkAllAsRead = () => {
-    setNotifications(
-      notifications.map((notification) => ({
-        ...notification,
+    setNotification(
+      notification.map((notifications) => ({
+        ...notifications,
         isUnRead: false,
       }))
     );
@@ -150,8 +102,8 @@ export default function NotificationsPopover() {
               </ListSubheader>
             }
           >
-            {notifications.slice(0, 2).map((notification) => (
-              <NotificationItem key={notification.id} notification={notification} />
+            {notification.slice(0, 2).map((notifications) => (
+              <NotificationItem key={notifications.id} notification={notifications} />
             ))}
           </List>
 
@@ -163,8 +115,8 @@ export default function NotificationsPopover() {
               </ListSubheader>
             }
           >
-            {notifications.slice(2, 5).map((notification) => (
-              <NotificationItem key={notification.id} notification={notification} />
+            {notification.slice(2, 5).map((notifications) => (
+              <NotificationItem key={notifications.id} notification={notifications} />
             ))}
           </List>
         </Scrollbar>
@@ -210,7 +162,7 @@ function NotificationItem({ notification }) {
       }}
     >
       <ListItemAvatar>
-        <Avatar sx={{ bgcolor: 'background.neutral' }}>{avatar}</Avatar>
+        <Avatar sx={{ bgcolor: 'white' }}>{avatar}</Avatar>
       </ListItemAvatar>
       <ListItemText
         primary={title}
@@ -245,32 +197,40 @@ function renderContent(notification) {
     </Typography>
   );
 
-  if (notification.type === 'order_placed') {
-    return {
-      avatar: <img alt={notification.title} src="/assets/icons/ic_notification_package.svg" />,
-      title,
-    };
+  let avatar = null;
+
+  // Use Iconify icons based on the notification type
+  switch (notification.type) {
+    case 'order_placed':
+      avatar = <Iconify icon="ic:outline-package" />;
+      break;
+    case 'order_shipped':
+      avatar = <Iconify icon="ic:outline-local-shipping" />;
+      break;
+    case 'mail':
+      avatar = <Iconify icon="ic:outline-mail" />;
+      break;
+    case 'chat_message':
+      avatar = <Iconify icon="ic:outline-chat" />;
+      break;
+    case 'paani':
+      avatar = <Iconify icon="ion:water-outline" sx={{ color: '#2389da', backgroundColor: 'white' }} />;
+      break;
+    case 'bijli':
+      avatar = <Iconify icon="ant-design:thunderbolt-outlined" />;
+      break;
+    case 'gas':
+      avatar = <Iconify icon="mdi:gas" />;
+      break;
+    case 'solar':
+      avatar = <Iconify icon="mdi:solar-power" />;
+      break;
+    default:
+      avatar = notification.avatar ? <Iconify icon={notification.avatar} /> : <Iconify icon="mdi:alert-circle-outline" />;
   }
-  if (notification.type === 'order_shipped') {
-    return {
-      avatar: <img alt={notification.title} src="/assets/icons/ic_notification_shipping.svg" />,
-      title,
-    };
-  }
-  if (notification.type === 'mail') {
-    return {
-      avatar: <img alt={notification.title} src="/assets/icons/ic_notification_mail.svg" />,
-      title,
-    };
-  }
-  if (notification.type === 'chat_message') {
-    return {
-      avatar: <img alt={notification.title} src="/assets/icons/ic_notification_chat.svg" />,
-      title,
-    };
-  }
+
   return {
-    avatar: notification.avatar ? <img alt={notification.title} src={notification.avatar} /> : null,
+    avatar,
     title,
   };
 }

@@ -29,7 +29,7 @@ const navConfig = [
   },
   {
     title: 'Solar',
-    path: '/login',
+    path: '/dashboard/solar',
     icon: icon('ph:solar-panel-fill'),
   },
   {

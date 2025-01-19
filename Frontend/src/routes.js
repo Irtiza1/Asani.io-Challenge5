@@ -8,6 +8,7 @@ import PaaniPage from './pages/Paani';
 import LoginPage from './pages/LoginPage';
 import Page404 from './pages/Page404';
 import BijliPage from './pages/Bijli';
+import SolarPage from './pages/SolarPage';
 import DashboardAppPage from './pages/DashboardAppPage';
 
 // ----------------------------------------------------------------------
@@ -23,6 +24,7 @@ export default function Router() {
         { path: 'paani', element: <PaaniPage /> },
         { path: 'bijli', element: <BijliPage /> },
         { path: 'gas', element: <GasPage /> },
+        { path: 'solar', element: <SolarPage /> },
       ],
     },
     {

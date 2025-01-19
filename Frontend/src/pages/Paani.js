@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet-async';
 import { Card, Typography, Grid, Container, Slider } from '@mui/material';
 import { useState, useEffect } from 'react';
 import { AppWebsiteVisits, AppWidgetSummary } from '../sections/@dashboard/app';
+import { useNotification } from '../utils/Notifcation';
 
 export default function DashboardAppPage() {
   const [motorHealth, setMotorHealth] = useState(100);
@@ -38,7 +39,7 @@ export default function DashboardAppPage() {
       ],
     },
   ]);
-
+  const { notification, setNotification, updateNotification } = useNotification();
   const handleMotorHealthChange = (event, newValue) => {
     setMotorHealth(newValue);
   };
@@ -65,7 +66,7 @@ export default function DashboardAppPage() {
   useEffect(() => {
     const newAlerts = [];
 
-    if (waterLevel < 30) newAlerts.push('Warning: Water level is too low!');
+    if (waterLevel < 20) updateNotification('Water Update', 'Water usage increased by 10%', 'paani');
     if (waterLevel > 80) newAlerts.push('Warning: Water level is too high!');
     if (waterTemperature > 70) newAlerts.push('Alert: Water temperature is dangerously high!');
     if (waterPurity < 50) newAlerts.push('Alert: Water purity is below acceptable levels!');

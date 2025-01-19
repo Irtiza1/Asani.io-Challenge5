@@ -8,21 +8,23 @@ import ThemeProvider from './theme';
 // components
 import { StyledChart } from './components/chart';
 import ScrollToTop from './components/scroll-to-top';
-
+import { NotificationProvider } from './utils/Notifcation'
 // ----------------------------------------------------------------------
 
 export default function App() {
   return (
     <HelmetProvider>
-      <BrowserRouter>
-      <DarkModeProvider>
-        <ThemeProvider>
-          <ScrollToTop />
-          <StyledChart />
-          <Router />
-        </ThemeProvider>
-        </DarkModeProvider>
-      </BrowserRouter>
+      <NotificationProvider>
+        <BrowserRouter>
+        <DarkModeProvider>
+          <ThemeProvider>
+            <ScrollToTop />
+            <StyledChart />
+            <Router />
+          </ThemeProvider>
+          </DarkModeProvider>
+        </BrowserRouter>
+      </NotificationProvider>
     </HelmetProvider>
   );
 }
