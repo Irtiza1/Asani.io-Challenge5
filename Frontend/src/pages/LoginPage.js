@@ -9,7 +9,7 @@ import Logo from '../components/logo';
 import Iconify from '../components/iconify';
 // sections
 import { LoginForm } from '../sections/auth/login';
-
+import src from "../assets/Orange Minimalist Electrical Energy Logo (7).png"
 // ----------------------------------------------------------------------
 
 const StyledRoot = styled('div')(({ theme }) => ({
@@ -46,7 +46,7 @@ export default function LoginPage() {
   return (
     <>
       <Helmet>
-        <title> Login | Asaani.io </title>
+        <title> Login | Sahulat.io </title>
       </Helmet>
 
       <StyledRoot>
@@ -60,17 +60,19 @@ export default function LoginPage() {
 
         {mdUp && (
           <StyledSection>
-            <Typography variant="h3" sx={{ px: 5, mt: 10, mb: 5 }}>
+            <Typography variant="h3" sx={{ px: 5, mt: 5, mb: 2 }}>
               Hi, Welcome Back
             </Typography>
-            <img src="/assets/illustrations/illustration_login.png" alt="login" />
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+              <img src={src} alt="login" style={{ width: '400px', height: '400px' }} />
+            </div>
           </StyledSection>
         )}
 
         <Container maxWidth="sm">
           <StyledContent>
             <Typography variant="h4" gutterBottom>
-              Sign in to Asaani
+              Sign in to Sahulat.io
             </Typography>
 
             <Typography variant="body2" sx={{ mb: 5 }}>
