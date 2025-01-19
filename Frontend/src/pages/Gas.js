@@ -168,7 +168,8 @@ import {
 
 export default function ResourceDashboard() {
   const theme = useTheme();
-
+  const [gasFlow, setGasFlow] = useState(100);
+  const [gasLeakage, setGasLeakage] = useState(50);
   // State for dynamic data
   const [waterLevel, setWaterLevel] = useState([]);
   const [waterUsage, setWaterUsage] = useState([]);
@@ -204,10 +205,9 @@ export default function ResourceDashboard() {
           {/* Water Level Widget */}
           <Grid item xs={12} sm={6} md={3}>
             <AppWidgetSummary 
-              title="Water Level (%)" 
-              total={waterLevel[waterLevel.length - 1]?.toFixed(2)} 
-              color="info" 
-              icon={'mdi:water-outline'} 
+              title="Gas Pressure (PSI)" 
+              total={75} 
+              icon={'mdi:gas-cylinder'} 
             />
           </Grid>
 
