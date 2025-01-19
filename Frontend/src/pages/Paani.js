@@ -6,7 +6,7 @@ import { useNotification } from '../utils/Notifcation';
 
 export default function DashboardAppPage() {
   const [motorHealth, setMotorHealth] = useState(100);
-  const [waterLevel, setWaterLevel] = useState(35);
+  const [waterLevel, setWaterLevel] = useState(50);
   const [waterTemperature, setWaterTemperature] = useState(25);
   const [waterPurity, setWaterPurity] = useState(90);
   const [flowRate, setFlowRate] = useState(30);
@@ -63,18 +63,30 @@ export default function DashboardAppPage() {
   }, []);
 
   // Monitor levels and trigger alerts
-  useEffect(() => {
-    const newAlerts = [];
+  if (waterLevel < 20 && waterLevel > 19) {
+    updateNotification('Water Update', 'Water level is too low!', 'paani');
+  }
+  if (waterLevel > 98 && waterLevel < 99) {
+    updateNotification('Warning', ' Water level is too high!', 'paani');
+  }
 
-    if (waterLevel < 20) updateNotification('Water Update', 'Water usage increased by 10%', 'paani');
-    if (waterLevel > 80) newAlerts.push('Warning: Water level is too high!');
-    if (waterTemperature > 70) newAlerts.push('Alert: Water temperature is dangerously high!');
-    if (waterPurity < 50) newAlerts.push('Alert: Water purity is below acceptable levels!');
-    if (flowRate < 10) newAlerts.push('Warning: Flow rate is too low!');
-    if (flowRate > 80) newAlerts.push('Alert: Flow rate is too high!');
+  // Check temperature changes
+  if (waterTemperature > 70 && waterTemperature < 71 ) {
+    updateNotification('Alert', 'Water temperature is dangerously high!', 'paani');
+  }
 
-    setAlerts(newAlerts); // Update the alerts state
-  }, [waterLevel, waterTemperature, waterPurity, flowRate]);
+  // Check purity changes
+  if (waterPurity < 50 && waterPurity >49) {
+    updateNotification('Alert', 'Water purity is below acceptable levels!', 'paani');
+  }
+
+  // Check flow rate changes
+  if (flowRate < 10 && flowRate>9) {
+    updateNotification('Warning', 'Flow rate is too low!', 'paani');
+  }
+  if (flowRate > 80 && flowRate < 81) {
+    updateNotification('Warning', 'Flow rate is too high!', 'paani');
+  }
 
   // Simulate live updates for the chart data
   useEffect(() => {
