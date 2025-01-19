@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import { Card, Typography, Grid, Container, Slider } from '@mui/material';
 import { useState, useEffect } from 'react';
 import { AppWebsiteVisits, AppWidgetSummary } from '../sections/@dashboard/app';
+import { useNotification } from '../utils/Notifcation';
 
 export default function DashboardAppPage() {
   const [motorHealth, setMotorHealth] = useState(100);
@@ -12,7 +13,7 @@ export default function DashboardAppPage() {
   const [waterPurity, setWaterPurity] = useState(90);
   const [flowRate, setFlowRate] = useState(30);
   const [alerts, setAlerts] = useState([]); // Array to hold alert messages
-
+  const { notification, setNotification, updateNotification } = useNotification();
   const handleMotorHealthChange = (event, newValue) => {
     setMotorHealth(newValue);
   };
@@ -40,7 +41,7 @@ export default function DashboardAppPage() {
   useEffect(() => {
     const newAlerts = [];
 
-    if (waterLevel < 20) newAlerts.push('Warning: Water level is too low!');
+    if (waterLevel < 20) updateNotification('Water Update', 'Water usage increased by 10%', 'paani');
     if (waterLevel > 80) newAlerts.push('Warning: Water level is too high!');
     if (waterTemperature > 70) newAlerts.push('Alert: Water temperature is dangerously high!');
     if (waterPurity < 50) newAlerts.push('Alert: Water purity is below acceptable levels!');
@@ -126,12 +127,6 @@ export default function DashboardAppPage() {
                 '11/01/2003',
               ]}
               chartData={[
-                {
-                  name: '2024',
-                  type: 'column',
-                  fill: 'solid',
-                  data: [23, 11, 22, 27, 13, 22, 37, 21, 44, 22, 30],
-                },
                 {
                   name: '2025',
                   type: 'area',
