@@ -1,9 +1,10 @@
 // ----------------------------------------------------------------------
+import ansabPhoto from '../assets/ansab.jpg'; 
 
 const account = {
-  displayName: 'Jaydon Frankie',
-  email: 'demo@minimals.cc',
-  photoURL: '/assets/images/avatars/avatar_default.jpg',
+  displayName: 'Ansab Naqvi',
+  email: 'ansabnaqvi@mgmail.com',
+  photoURL: ansabPhoto,
 };
 
 export default account;

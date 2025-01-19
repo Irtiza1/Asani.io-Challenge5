@@ -35,7 +35,7 @@ const navConfig = [
   {
     title: 'Login',
     path: '/login',
-    icon: icon('ic_disabled'),
+    icon: icon('mdi:account-check'),
   },
 ];
 

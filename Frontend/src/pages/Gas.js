@@ -53,6 +53,7 @@ import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useTheme } from '@mui/material/styles';
 import { Grid, Container, Typography } from '@mui/material';
+import { useNotification } from '../utils/Notifcation';
 import {
   AppWidgetSummary,
   AppWebsiteVisits,
@@ -69,7 +70,7 @@ export default function GasDashboardPage() {
   // Threshold values
   const PRESSURE_THRESHOLD = 125; // PSI
   const CONSUMPTION_THRESHOLD = 300; // Cubic meters
-
+  const { notification, setNotification, updateNotification } = useNotification();
   // Function to generate dynamic data
   const generateData = () => {
     const pressureData = Array.from({ length: 7 }, () => Math.floor(Math.random() * 20) + 110); // Random PSI between 110-130
@@ -77,10 +78,10 @@ export default function GasDashboardPage() {
 
     // Check for alerts
     if (pressureData.some((pressure) => pressure > PRESSURE_THRESHOLD)) {
-      alert('Gas pressure has exceeded the safe threshold!');
+      updateNotification('Gas Update', 'Gas pressure has exceeded the safe threshold!', 'gas');
     }
     if (consumption > CONSUMPTION_THRESHOLD) {
-      alert('Daily gas consumption has surpassed the threshold!');
+      updateNotification('Gas Update', 'Daily gas consumption has surpassed the threshold!', 'gas');
     }
 
     // Update state
@@ -122,7 +123,20 @@ export default function GasDashboardPage() {
             icon={'mdi:chart-box-outline'} 
           />
         </Grid>
-
+        <Grid item xs={12} sm={6} md={3}>
+            <AppWidgetSummary 
+              title="Gas Pressure (PSI)" 
+              total={75} 
+              icon={'mdi:gas-cylinder'} 
+            />
+          </Grid>
+          <Grid item xs={12} sm={6} md={3}>
+            <AppWidgetSummary 
+              title="Gas Pressure (PSI)" 
+              total={75} 
+              icon={'mdi:gas-cylinder'} 
+            />
+          </Grid>
         {/* <Grid item xs={12}>
           <AppWebsiteVisits
             title="Your Goal Tracking"
