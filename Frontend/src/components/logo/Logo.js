@@ -4,7 +4,7 @@ import { Link as RouterLink } from 'react-router-dom';
 // @mui
 import { useTheme } from '@mui/material/styles';
 import { Box, Link } from '@mui/material';
-import asaani from '../../assets/logo.jpg'
+import asaani from '../../assets/Orange Minimalist Electrical Energy Logo (14).png'
 // ----------------------------------------------------------------------
 
 const Logo = forwardRef(({ disabledLink = false, sx, ...other }, ref) => {
@@ -21,7 +21,14 @@ const Logo = forwardRef(({ disabledLink = false, sx, ...other }, ref) => {
       component="img"
       src={asaani}  // Use the path stored in the `logo` variable
       alt="Logo"
-      sx={{ width: 40, height: 40, cursor: 'pointer', ...sx }} // Styling for the logo
+      sx={{
+        width: 150,  // Keep the original size or adjust as needed
+        height: 150, // Keep the original size or adjust as needed
+        cursor: 'pointer',
+        display: 'block', // Ensures the image is treated as a block element
+        marginLeft: 'auto',  // Centers the image horizontally
+        marginRight: 'auto', // Centers the image horizontally
+      }}
     />
   );
 

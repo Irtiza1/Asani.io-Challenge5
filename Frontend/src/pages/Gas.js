@@ -62,9 +62,10 @@ import {
 
 export default function GasDashboardPage() {
   const theme = useTheme();
-
+  const [gasFlow, setGasFlow] = useState(100);
+  const [gasLeakage, setGasLeakage] = useState(50);
   // State for dynamic data
-  const [gasPressure, setGasPressure] = useState([]);
+  const [gasPressure, setGasPressure] = useState(30);
   const [dailyConsumption, setDailyConsumption] = useState(0);
 
   // Threshold values
@@ -72,6 +73,14 @@ export default function GasDashboardPage() {
   const CONSUMPTION_THRESHOLD = 300; // Cubic meters
   const { notification, setNotification, updateNotification } = useNotification();
   // Function to generate dynamic data
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setGasFlow((prev) => Math.max(0, Math.min(100, prev + (Math.random() * 2 - 1) * 2)));
+      setGasLeakage((prev) => Math.max(0, Math.min(100, prev + (Math.random() * 2 - 1) * 2)));
+      setGasPressure((prev) => Math.max(0, Math.min(100, prev + (Math.random() * 2 - 1) * 2)));
+      setDailyConsumption((prev) => Math.max(0, Math.min(100, prev + (Math.random() * 2 - 1) * 3)));
+    }, 1000); // Update every second
+  })
   const generateData = () => {
     const pressureData = Array.from({ length: 7 }, () => Math.floor(Math.random() * 20) + 110); // Random PSI between 110-130
     const consumption = Math.floor(Math.random() * 100) + 200; // Random consumption between 200-300 cubic meters
@@ -110,7 +119,7 @@ export default function GasDashboardPage() {
           <Grid item xs={12} sm={6} md={3}>
             <AppWidgetSummary 
               title="Gas Pressure (PSI)" 
-              total={75} 
+              total={`${gasPressure} PSI`}
               icon={'mdi:gas-cylinder'} 
             />
           </Grid>
@@ -118,22 +127,22 @@ export default function GasDashboardPage() {
         <Grid item xs={12} sm={6} md={3}>
           <AppWidgetSummary 
             title="Daily Gas Consumption (m³)" 
-            total={23} 
+            total={`${dailyConsumption}PSI`}
             color="info" 
             icon={'mdi:chart-box-outline'} 
           />
         </Grid>
         <Grid item xs={12} sm={6} md={3}>
             <AppWidgetSummary 
-              title="Gas Pressure (PSI)" 
-              total={75} 
+              title="Gas flow (PSI)" 
+              total={`${gasFlow} PSI`} 
               icon={'mdi:gas-cylinder'} 
             />
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
             <AppWidgetSummary 
-              title="Gas Pressure (PSI)" 
-              total={75} 
+              title="Gas leakage" 
+              total={`${gasLeakage.toFixed(0)}%`}
               icon={'mdi:gas-cylinder'} 
             />
           </Grid>
