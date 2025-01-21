@@ -81,7 +81,7 @@ export default function DashboardAppPage() {
   return (
     <>
       <Helmet>
-      <title> Bijli Dashboard | Sahulat.io </title>
+      <title> Bijli | Sahulat.io </title>
       </Helmet>
 
       <Container maxWidth="xl">
@@ -125,13 +125,13 @@ export default function DashboardAppPage() {
               ]}
               chartData={[
                 {
-                  name: 'Current Consumption',
+                  name: 'Current Consumption (Units)',
                   type: 'area',
                   fill: 'gradient',
                   data: currentConsumption,
                 },
                 {
-                  name: 'Average Consumption',
+                  name: 'Average Consumption (Units)',
                   type: 'line',
                   fill: 'solid',
                   data: averageConsumption,

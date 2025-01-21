@@ -193,7 +193,7 @@ export default function ResourceDashboard() {
   return (
     <>
       <Helmet>
-        <title> Resource Dashboard | Live Monitoring </title>
+        <title> Gas | Sahulat.io </title>
       </Helmet>
 
       <Container maxWidth="xl">
@@ -214,7 +214,7 @@ export default function ResourceDashboard() {
           {/* Water Usage Widget */}
           <Grid item xs={12} sm={6} md={3}>
             <AppWidgetSummary 
-              title="Water Usage (L)" 
+              title="Gas Flow (PSI)" 
               total={waterUsage[waterUsage.length - 1]?.toFixed(2)} 
               icon={'mdi:water'} 
             />
@@ -223,7 +223,7 @@ export default function ResourceDashboard() {
           {/* Energy Consumption Widget */}
           <Grid item xs={12} sm={6} md={3}>
             <AppWidgetSummary 
-              title="Energy Consumption (kWh)" 
+              title="Gas Usage (kWh)" 
               total={energyConsumption[energyConsumption.length - 1]?.toFixed(2)} 
               color="warning" 
               icon={'mdi:flash'} 
@@ -243,7 +243,7 @@ export default function ResourceDashboard() {
           {/* Graphs */}
           <Grid item xs={12} md={6} lg={8}>
             <AppWebsiteVisits
-              title="Bachat"
+              title="Gas Usage"
               subheader="(+43%) than last year"
               chartLabels={[
                 '11/01/2024', '11/02/2024', '11/03/2024', '11/04/2024', '11/05/2024', '11/06/2024', '11/07/2024', '11/08/2024', '11/09/2024', '11/10/2024',
@@ -259,7 +259,7 @@ export default function ResourceDashboard() {
               ]}
               chartData={[
                 {
-                  name: 'Bijli',
+                  name: 'Current Consumption (Units)',
                   type: 'line',
                   fill: 'solid',
                   data: [
@@ -271,7 +271,7 @@ export default function ResourceDashboard() {
                   ],
                 },
                 {
-                  name: 'Paani',
+                  name: 'Current Consumption (Units)',
                   type: 'area',
                   fill: 'gradient',
                   data: [

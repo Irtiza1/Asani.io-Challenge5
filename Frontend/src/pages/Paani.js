@@ -16,7 +16,7 @@ export default function DashboardAppPage() {
   // For chart data (removed 2024 data)
   const [chartData, setChartData] = useState([
     {
-      name: 'Current Consumption',
+      name: 'Current Consumption (Gallons)',
       type: 'area',
       fill: 'gradient',
       data: [
@@ -28,7 +28,7 @@ export default function DashboardAppPage() {
       ],
     },
     {
-      name: 'Average Consumption',
+      name: 'Average Consumption (Gallons)',
       type: 'line',
       fill: 'solid',
       data: [
@@ -116,7 +116,7 @@ export default function DashboardAppPage() {
   return (
     <>
       <Helmet>
-      <title> Paani Dashboard | Sahulat.io </title>
+      <title> Paani | Sahulat.io </title>
       </Helmet>
 
       <Container maxWidth="xl">
@@ -208,7 +208,7 @@ export default function DashboardAppPage() {
               style={{ width: '100%', maxHeight: '300px', objectFit: 'contain' }}
             />
             <h3 style={{ marginTop: '10px', color: '#007bff', fontSize: '20px' }}>Motor Health</h3>
-            <p style={{ color: '#555', fontSize: '18px' }}>{motorHealth}%</p>
+            <p style={{ color: '#555', fontSize: '20px' }}>{motorHealth}%</p>
           </div>
         </Card>
       </Grid>
